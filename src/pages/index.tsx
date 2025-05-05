@@ -43,7 +43,13 @@ export default function HomePage({ initialPokemon }: HomePageProps) {
         </Head>
         <div className="flex justify-center py-3 relative">
           <div className="h-[100px] w-[100px] relative">
-            <Image src="/logo.svg" alt="로고" fill className="object-contain" />
+            <Image
+              src="/logo.svg"
+              alt="로고"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
           <ul className="absolute top-[10px] right-[10px]">
             <li>
