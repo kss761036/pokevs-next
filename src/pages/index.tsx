@@ -37,46 +37,48 @@ export default function HomePage({ initialPokemon }: HomePageProps) {
   const [filterTypes, setFilterTypes] = useState<string[]>([]);
 
   return (
-    <DndProvider backend={MultiBackend} options={customBackend}>
-      <div className="relative pb-[300px] lg:pb-[0px]">
-        <Head>
-          <title>PokeVS</title>
-        </Head>
-        <div className="flex justify-center py-3 relative">
-          <div className="h-[100px] w-[100px] relative">
-            <Image
-              src="/logo.svg"
-              alt="로고"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-          <ul className="absolute top-[10px] right-[10px]">
-            <li>
-              <a
-                className="underline text-[13px] font-semibold"
-                href="https://github.com/kss761036/pokevs"
-                rel="noopener noreferrer"
-                target="_blank">
-                깃허브
-              </a>
-            </li>
-          </ul>
+    <>
+      <Head>
+        <title>PokeVS</title>
+      </Head>
+      <div className="flex justify-center py-3 relative">
+        <div className="h-[100px] w-[100px] relative">
+          <Image
+            src="/logo.svg"
+            alt="로고"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
-        <PokeList
-          initialPokemon={initialPokemon}
-          filterName={filterName}
-          filterTypes={filterTypes}
-        />
-        <PokeFloat
-          filterName={filterName}
-          setFilterName={setFilterName}
-          filterTypes={filterTypes}
-          setFilterTypes={setFilterTypes}
-        />
+        <ul className="absolute top-[10px] right-[10px]">
+          <li>
+            <a
+              className="underline text-[13px] font-semibold"
+              href="https://github.com/kss761036/pokevs"
+              rel="noopener noreferrer"
+              target="_blank">
+              깃허브
+            </a>
+          </li>
+        </ul>
       </div>
-    </DndProvider>
+      <DndProvider backend={MultiBackend} options={customBackend}>
+        <div className="relative pb-[300px] lg:pb-[0px]">
+          <PokeList
+            initialPokemon={initialPokemon}
+            filterName={filterName}
+            filterTypes={filterTypes}
+          />
+          <PokeFloat
+            filterName={filterName}
+            setFilterName={setFilterName}
+            filterTypes={filterTypes}
+            setFilterTypes={setFilterTypes}
+          />
+        </div>
+      </DndProvider>
+    </>
   );
 }
 
