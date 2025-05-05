@@ -16,6 +16,7 @@
     "axios": "^1.9.0",
     "framer-motion": "^12.9.5",
     "next": "15.3.1",
+    "p-limit": "^6.2.0",
     "react": "^19.0.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
