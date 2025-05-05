@@ -20,10 +20,7 @@ export default function Document() {
           content="포켓몬 두 마리를 드래그해서 AI가 승자를 예측해주는 대결 시뮬레이터입니다."
         />
         <meta property="og:image" content="/thumbnail.png" />
-        <meta
-          property="og:url"
-          content="https://pokevs-efia4vagl-kimseungseoks-projects.vercel.app/"
-        />
+        <meta property="og:url" content="https://pokevs.vercel.app/" />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
