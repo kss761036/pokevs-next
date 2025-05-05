@@ -1,40 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🐱‍👤 PokeVS
 
-## Getting Started
+포켓몬 두 마리를 선택하면, OpenAI GPT가 누가 이길지 예측해주는 AI 대결 시뮬레이터입니다.
 
-First, run the development server:
+![썸네일](./public/thumbnail.png)
+
+---
+
+## 🧩 주요 기능
+
+- 🎯 드래그앤드롭으로 포켓몬 선택
+- 🧠 GPT-3.5-turbo를 통한 승부 예측
+- ✨ 20% 확률로 이로치 포켓몬 등장
+- 🔍 타입·이름 필터로 빠른 검색
+- ⚡ 무한스크롤로 최대 500마리까지 로딩
+
+---
+
+## 🚀 기술 스택
+
+- Next.js
+- React DnD (드래그앤드롭)
+- Framer Motion (애니메이션)
+- MUI (UI 컴포넌트)
+- OpenAI API (GPT-3.5)
+
+---
+
+## 🛠️ 사용 방법
 
 ```bash
+# 설치
+npm install
+
+# .env.local 파일 설정
+NEXT_PUBLIC_OPENAI_API_KEY=your_openai_api_key_here
+
+# 실행
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
