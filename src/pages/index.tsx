@@ -79,50 +79,58 @@ interface PokeAPIListResult {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500");
-  const data: { results: PokeAPIListResult[] } = await res.json();
+  try {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500");
+    const data: { results: PokeAPIListResult[] } = await res.json();
 
-  const pokemonList: Pokemon[] = await Promise.all(
-    data.results.map(async (pokemon) => {
-      const id = parseInt(
-        pokemon.url.split("/").filter(Boolean).pop() || "0",
-        10
-      );
+    const pokemonList: Pokemon[] = await Promise.all(
+      data.results.map(async (pokemon) => {
+        const id = parseInt(
+          pokemon.url.split("/").filter(Boolean).pop() || "0",
+          10
+        );
 
-      const [speciesRes, detailRes] = await Promise.all([
-        fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res) =>
-          res.json()
-        ),
-        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
-          res.json()
-        ),
-      ]);
+        const [speciesRes, detailRes] = await Promise.all([
+          fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res) =>
+            res.json()
+          ),
+          fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
+            res.json()
+          ),
+        ]);
 
-      const species: PokemonSpecies = speciesRes;
-      const koNameEntry = species.names.find((n) => n.language.name === "ko");
-      const descriptionEntry = species.flavor_text_entries.find(
-        (entry) => entry.language.name === "ko"
-      );
+        const species: PokemonSpecies = speciesRes;
+        const koNameEntry = species.names.find((n) => n.language.name === "ko");
+        const descriptionEntry = species.flavor_text_entries.find(
+          (entry) => entry.language.name === "ko"
+        );
 
-      const types: string[] = (detailRes.types as TypeInfo[]).map(
-        (t) => typeMap[t.type.name] || t.type.name
-      );
+        const types: string[] = (detailRes.types as TypeInfo[]).map(
+          (t) => typeMap[t.type.name] || t.type.name
+        );
 
-      return {
-        id,
-        name: koNameEntry?.name || pokemon.name,
-        url: pokemon.url,
-        engName: pokemon.name,
-        types,
-        image: `https://img.pokemondb.net/sprites/black-white/normal/${pokemon.name}.png`,
-        description: descriptionEntry?.flavor_text.replace(/\n|\f/g, " ") || "",
-      };
-    })
-  );
+        return {
+          id,
+          name: koNameEntry?.name || pokemon.name,
+          url: pokemon.url,
+          engName: pokemon.name,
+          types,
+          image: `https://img.pokemondb.net/sprites/black-white/normal/${pokemon.name}.png`,
+          description:
+            descriptionEntry?.flavor_text.replace(/\n|\f/g, " ") || "",
+        };
+      })
+    );
 
-  return {
-    props: {
-      initialPokemon: pokemonList,
-    },
-  };
+    return {
+      props: {
+        initialPokemon: pokemonList,
+      },
+    };
+  } catch (error) {
+    console.error("getStaticProps fetch 에러:", error);
+    return {
+      notFound: true,
+    };
+  }
 };
